@@ -3,110 +3,17 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
-				"type": "Copy",
+				"name": "Wait1",
+				"type": "Wait",
 				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [
-					{
-						"name": "Source",
-						"value": "@{pipeline().parameters.pschema}.@{pipeline().parameters.ptable}"
-					},
-					{
-						"name": "Destination",
-						"value": "container1//"
-					}
-				],
+				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"sink": {
-						"type": "DelimitedTextSink",
-						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "ds_param",
-						"type": "DatasetReference",
-						"parameters": {
-							"dschema": {
-								"value": "@pipeline().parameters.pschema",
-								"type": "Expression"
-							},
-							"dtable": {
-								"value": "@pipeline().parameters.ptable",
-								"type": "Expression"
-							},
-							"dserver": {
-								"value": "@pipeline().parameters.pserver",
-								"type": "Expression"
-							},
-							"ddb": {
-								"value": "@pipeline().parameters.pdb",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "ds_blob",
-						"type": "DatasetReference",
-						"parameters": {
-							"filepath": {
-								"value": "@pipeline().parameters.ptargetfilepath",
-								"type": "Expression"
-							}
-						}
-					}
-				]
+					"waitTimeInSeconds": 1
+				}
 			}
 		],
-		"parameters": {
-			"pserver": {
-				"type": "string"
-			},
-			"pdb": {
-				"type": "string"
-			},
-			"pschema": {
-				"type": "string"
-			},
-			"ptable": {
-				"type": "string"
-			},
-			"ptargetfilepath": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
-		"lastPublishTime": "2024-01-07T00:37:53Z"
+		"lastPublishTime": "2024-01-19T23:16:07Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
