@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "DEtharun"
+		},
+		"ls_AzureSqlDatabase_source_connectionString": {
+			"value": ""
+		},
+		"ls_blob_target_connectionString": {
+			"value": ""
+		},
+		"ls_param_01_connectionString": {
+			"value": ""
+		}
+	}
+}
