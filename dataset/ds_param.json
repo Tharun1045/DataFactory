@@ -1,0 +1,47 @@
+{
+	"name": "ds_param",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_param_01",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"lserver": {
+					"value": "@dataset().dserver",
+					"type": "Expression"
+				},
+				"ldb": {
+					"value": "@dataset().ddb",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"dschema": {
+				"type": "string"
+			},
+			"dtable": {
+				"type": "string"
+			},
+			"dserver": {
+				"type": "string"
+			},
+			"ddb": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().dschema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().dtable",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
