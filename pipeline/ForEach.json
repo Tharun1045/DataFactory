@@ -6,13 +6,69 @@
 				"name": "ForEach1",
 				"type": "ForEach",
 				"dependsOn": [],
-				"userProperties": []
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.pvar",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						},
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Wait1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "vvar1",
+								"value": {
+									"value": "@string(length(item()))",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
 			"pvar": {
 				"type": "array",
-				"defaultValue": "[\"tarun\",\"varun\",\"ramu\",\"jeevan\"]\""
+				"defaultValue": [
+					"tarun",
+					"varun",
+					"ramu",
+					"jeevan"
+				]
+			}
+		},
+		"variables": {
+			"vvar1": {
+				"type": "String"
+			},
+			"a1": {
+				"type": "String"
+			},
+			"a2": {
+				"type": "String"
 			}
 		},
 		"annotations": []
