@@ -6,6 +6,7 @@
 				"name": "ForEach1",
 				"type": "ForEach",
 				"dependsOn": [],
+				"userProperties": [],
 				"typeProperties": {
 					"items": {
 						"value": "@pipeline().parameters.pvar",
@@ -71,6 +72,8 @@
 				"type": "String"
 			}
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2024-01-25T21:59:14Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }
