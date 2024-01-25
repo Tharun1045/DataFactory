@@ -5,13 +5,21 @@
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Filter1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
 						"value": "@pipeline().parameters.pvar",
 						"type": "Expression"
 					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Wait1",
@@ -45,8 +53,120 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "Switch1",
+							"type": "Switch",
+							"dependsOn": [
+								{
+									"activity": "Set variable1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@variables('vvar1')",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "2",
+										"activities": [
+											{
+												"name": "Append variable2",
+												"type": "AppendVariable",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "a2",
+													"value": {
+														"value": "@variables('vvar2')",
+														"type": "Expression"
+													}
+												}
+											}
+										]
+									},
+									{
+										"value": "5",
+										"activities": [
+											{
+												"name": "Append variable3",
+												"type": "AppendVariable",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "a3",
+													"value": {
+														"value": "@variables('vvar2')",
+														"type": "Expression"
+													}
+												}
+											}
+										]
+									}
+								],
+								"defaultActivities": [
+									{
+										"name": "Append variable1",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "a1",
+											"value": {
+												"value": "@variables('vvar2')",
+												"type": "Expression"
+											}
+										}
+									}
+								]
+							}
+						},
+						{
+							"name": "Set variable2",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set variable1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "vvar2",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
 						}
 					]
+				}
+			},
+			{
+				"name": "Filter1",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.pvar",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@contains(item(),'ja')",
+						"type": "Expression"
+					}
 				}
 			}
 		],
@@ -56,6 +176,8 @@
 				"defaultValue": [
 					"tarun",
 					"varun",
+					"ja",
+					"jaaa",
 					"ramu",
 					"jeevan"
 				]
@@ -66,14 +188,20 @@
 				"type": "String"
 			},
 			"a1": {
-				"type": "String"
+				"type": "Array"
 			},
 			"a2": {
+				"type": "Array"
+			},
+			"a3": {
+				"type": "Array"
+			},
+			"vvar2": {
 				"type": "String"
 			}
 		},
 		"annotations": [],
-		"lastPublishTime": "2024-01-25T21:59:14Z"
+		"lastPublishTime": "2024-01-25T23:19:52Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
