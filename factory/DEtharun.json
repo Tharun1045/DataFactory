@@ -1,0 +1,9 @@
+{
+	"name": "DEtharun",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "83ee46d9-b59f-482c-aa71-2dfa14fc3700",
+		"tenantId": "71dbf451-6322-4d2f-a1c1-50c39b136a94"
+	}
+}
