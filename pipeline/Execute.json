@@ -1,0 +1,37 @@
+{
+	"name": "Execute",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ForEach",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pvar": {
+							"value": "@pipeline().parameters.pvar",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"pvar": {
+				"type": "array",
+				"defaultValue": [
+					"ja"
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-01-26T00:32:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

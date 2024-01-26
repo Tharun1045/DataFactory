@@ -1,0 +1,52 @@
+{
+	"name": "IF-condition",
+	"properties": {
+		"activities": [
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@bool(equals(variables('var'),'tharun'))",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Wait2",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"var": {
+				"type": "Array",
+				"defaultValue": [
+					"tharun"
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-01-26T00:25:40Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
